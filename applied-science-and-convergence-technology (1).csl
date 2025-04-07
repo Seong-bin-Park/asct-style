@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0">
+  <info>
+    <title>Applied Science and Convergence Technology</title>
+    <id>http://www.zotero.org/styles/applied-science-and-convergence-technology</id>
+    <link href="http://www.zotero.org/styles/applied-science-and-convergence-technology" rel="self"/>
+    <author>
+      <name>Custom Generated</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="science"/>
+    <updated>2025-04-08T00:00:00+00:00</updated>
+  </info>
+
+  <macro name="author">
+    <names variable="author">
+      <name and="text" initialize-with=". " delimiter=", "/>
+      <label form="short" prefix=", " text-case="lowercase"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="access">
+    <text variable="URL"/>
+    <group prefix=" (" suffix=")">
+      <text term="accessed" text-case="capitalize-first"/>
+      <date variable="accessed">
+        <date-part name="month" suffix=" "/>
+        <date-part name="day" suffix=", "/>
+        <date-part name="year"/>
+      </date>
+    </group>
+  </macro>
+
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="journal">
+    <text variable="container-title" form="short"/>
+    <text variable="volume" prefix=" " suffix=","/>
+    <text variable="page" prefix=" " suffix=""/>
+    <date variable="issued" prefix=" (" suffix=").">
+      <date-part name="year"/>
+    </date>
+    <group prefix=" DOI: ">
+      <text variable="DOI"/>
+    </group>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="10" et-al-use-first="1" second-field-align="flush" entry-spacing="0">
+    <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="] "/>
+      <text macro="author"/>
+      <choose>
+        <if type="article-journal">
+          <text macro="journal"/>
+        </if>
+        <if type="book">
+          <text variable="title" font-style="italic"/>
+          <group prefix=" (" suffix=")">
+            <text variable="publisher"/>
+            <text variable="publisher-place" prefix=", "/>
+            <date variable="issued" prefix=", ">
+              <date-part name="year"/>
+            </date>
+          </group>
+          <text variable="page" prefix=", pp. "/>
+        </if>
+        <if type="paper-conference">
+          <text variable="title"/>
+          <text variable="container-title" prefix=", "/>
+          <group prefix=" (" suffix=")">
+            <text variable="publisher-place"/>
+            <date variable="issued" prefix=", ">
+              <date-part name="month"/>
+              <date-part name="day" prefix=" "/>
+              <date-part name="year" prefix=", "/>
+            </date>
+          </group>
+          <text variable="volume" prefix=", Vol. "/>
+          <text variable="page" prefix=", pp. "/>
+        </if>
+        <if type="report">
+          <text variable="title"/>
+          <text variable="genre" prefix=", "/>
+          <text variable="number" prefix=" No. "/>
+          <date variable="issued" prefix=", ">
+            <date-part name="year"/>
+          </date>
+        </if>
+        <if type="thesis">
+          <text variable="title" font-style="italic"/>
+          <text variable="genre" prefix=", "/>
+          <text variable="publisher" prefix=", "/>
+          <date variable="issued" prefix=", ">
+            <date-part name="year"/>
+          </date>
+        </if>
+        <if type="webpage">
+          <text variable="title" suffix=", "/>
+          <text variable="URL"/>
+          <text macro="access"/>
+        </if>
+        <if type="patent">
+          <text macro="author"/>
+          <text variable="title" prefix=", "/>
+          <text variable="number" prefix=", U.S. Patent "/>
+          <date variable="issued" prefix=" (" suffix=")">
+            <date-part name="year"/>
+          </date>
+        </if>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
